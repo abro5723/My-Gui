@@ -3,7 +3,11 @@ package gui.view;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.color.*;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -28,6 +32,7 @@ public class MyGuiPanel extends JPanel
 		firstButton = new JButton("Don't push me");
 		firstTextField = new JTextField("Words should be typed here.");
 		
+		
 		setupPanel();
 		setupLayout();
 		setupListeners();
@@ -43,7 +48,19 @@ public class MyGuiPanel extends JPanel
 	
 	private void setupLayout()
 	{
-		
+		baseLayout.putConstraint(SpringLayout.WEST, firstButton, 0, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, firstButton, 12, SpringLayout.SOUTH, firstTextField);
+		baseLayout.putConstraint(SpringLayout.NORTH, firstTextField, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 10, SpringLayout.WEST, this);
+	}
+	
+	private void changeRandomColor()
+	{
+		int red, green, blue;
+		red = (int) (Math.random() * 256);
+		blue = (int) (Math.random() * 256);
+		green = (int) (Math.random() * 256);
+		this.setBackground(new Color(red, green, blue));
 	}
 	
 	private void setupListeners()
@@ -55,6 +72,59 @@ public class MyGuiPanel extends JPanel
 				firstTextField.setText("wow, you pressed yu first button. good job.");
 			}
 			
+		});
+		
+		this.addMouseMotionListener(new MouseMotionListener()
+		{
+
+			public void mouseDragged(MouseEvent dragged)
+			{
+				
+			}
+			
+			public void mouseMoved(MouseEvent moved)
+			{
+				if(moved.isAltDown())
+				{
+					changeRandomColor();
+				}
+				if(moved.getY() <= (firstButton.getY() -5) && moved.getY() <=(firstButton.getHeight() + 5) 
+						&& moved.getX() >=(firstButton.getX() - 5) && moved.getX() <= (firstButton.getWidth() +5))
+				{
+					firstButton.setLocation((int) (Math.random() * 400), (int) (Math.random() * 400));
+				}
+			}
+			
+		});
+		
+		this.addMouseListener(new MouseListener()
+		{
+			public void mouseClicked(MouseEvent click)
+			{
+				changeRandomColor();
+			}
+			
+			public void mouseEntered(MouseEvent entered)
+			{
+				//changeRandomColor();
+			}
+
+			public void mousePressed(MouseEvent pressed)
+			{
+				
+			}
+
+			public void mouseReleased(MouseEvent released)
+			{
+				
+				
+			}
+
+			public void mouseExited(MouseEvent exited)
+			{
+				//changeRandomColor();
+				
+			}
 		});
 	}
 
