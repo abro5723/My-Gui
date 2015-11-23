@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.color.*;
 import java.util.Random;
 
@@ -73,21 +74,43 @@ public class MyGuiPanel extends JPanel
 			
 		});
 		
-		this.addMouseListener(new MouseListener()
+		this.addMouseMotionListener(new MouseMotionListener()
 		{
-			public void mouseClicked(MouseEvent click)
+
+			public void mouseDragged(MouseEvent dragged)
 			{
 				
 			}
 			
-			public void mouseEntered(MouseEvent entered)
+			public void mouseMoved(MouseEvent moved)
+			{
+				if(moved.isAltDown())
+				{
+					changeRandomColor();
+				}
+				if(moved.getY() <= (firstButton.getY() -5) && moved.getY() <=(firstButton.getHeight() + 5) 
+						&& moved.getX() >=(firstButton.getX() - 5) && moved.getX() <= (firstButton.getWidth() +5))
+				{
+					firstButton.setLocation((int) (Math.random() * 400), (int) (Math.random() * 400));
+				}
+			}
+			
+		});
+		
+		this.addMouseListener(new MouseListener()
+		{
+			public void mouseClicked(MouseEvent click)
 			{
 				changeRandomColor();
+			}
+			
+			public void mouseEntered(MouseEvent entered)
+			{
+				//changeRandomColor();
 			}
 
 			public void mousePressed(MouseEvent pressed)
 			{
-				
 				
 			}
 
@@ -99,7 +122,7 @@ public class MyGuiPanel extends JPanel
 
 			public void mouseExited(MouseEvent exited)
 			{
-				changeRandomColor();
+				//changeRandomColor();
 				
 			}
 		});
