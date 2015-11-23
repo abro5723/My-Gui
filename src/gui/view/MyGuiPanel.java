@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.color.*;
+import java.util.Random;
 
 import javax.swing.JPanel;
 
@@ -52,6 +53,15 @@ public class MyGuiPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 10, SpringLayout.WEST, this);
 	}
 	
+	private void changeRandomColor()
+	{
+		int red, green, blue;
+		red = (int) (Math.random() * 256);
+		blue = (int) (Math.random() * 256);
+		green = (int) (Math.random() * 256);
+		this.setBackground(new Color(red, green, blue));
+	}
+	
 	private void setupListeners()
 	{
 		firstButton.addActionListener(new ActionListener()
@@ -72,7 +82,7 @@ public class MyGuiPanel extends JPanel
 			
 			public void mouseEntered(MouseEvent entered)
 			{
-				
+				changeRandomColor();
 			}
 
 			public void mousePressed(MouseEvent pressed)
@@ -89,7 +99,7 @@ public class MyGuiPanel extends JPanel
 
 			public void mouseExited(MouseEvent exited)
 			{
-				
+				changeRandomColor();
 				
 			}
 		});
