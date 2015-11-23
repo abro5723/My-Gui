@@ -3,6 +3,8 @@ package gui.view;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.color.*;
 
 import javax.swing.JPanel;
@@ -28,6 +30,7 @@ public class MyGuiPanel extends JPanel
 		firstButton = new JButton("Don't push me");
 		firstTextField = new JTextField("Words should be typed here.");
 		
+		
 		setupPanel();
 		setupLayout();
 		setupListeners();
@@ -43,7 +46,10 @@ public class MyGuiPanel extends JPanel
 	
 	private void setupLayout()
 	{
-		
+		baseLayout.putConstraint(SpringLayout.WEST, firstButton, 0, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, firstButton, 12, SpringLayout.SOUTH, firstTextField);
+		baseLayout.putConstraint(SpringLayout.NORTH, firstTextField, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 10, SpringLayout.WEST, this);
 	}
 	
 	private void setupListeners()
@@ -55,6 +61,37 @@ public class MyGuiPanel extends JPanel
 				firstTextField.setText("wow, you pressed yu first button. good job.");
 			}
 			
+		});
+		
+		this.addMouseListener(new MouseListener()
+		{
+			public void mouseClicked(MouseEvent click)
+			{
+				
+			}
+			
+			public void mouseEntered(MouseEvent entered)
+			{
+				
+			}
+
+			public void mousePressed(MouseEvent pressed)
+			{
+				
+				
+			}
+
+			public void mouseReleased(MouseEvent released)
+			{
+				
+				
+			}
+
+			public void mouseExited(MouseEvent exited)
+			{
+				
+				
+			}
 		});
 	}
 
